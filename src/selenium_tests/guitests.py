@@ -6,8 +6,11 @@ from selenium.webdriver.common.keys import Keys
 class TestGui(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
-        self.driver.get("http://canitstreamto.me")
+       username = os.environ["SAUCE_USERNAME"]
+       access_key = os.environ["SAUCE_ACCESS_KEY"]
+       capabilities["tunnel-identifier"] = os.environ["TRAVIS_JOB_NUMBER"]
+       hub_url = "%s:%s@localhost:4445" % (username, access_key)
+       driver = webdriver.Remote(desired_capabilities=capabilities, command_executor="http://%s/wd/hub" % hub_url)
 
     def test_movies_link(self):
     	movies_link = self.driver.find_element_by_link_text("Movies")

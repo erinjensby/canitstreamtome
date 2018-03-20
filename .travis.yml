@@ -1,0 +1,10 @@
+language: python
+rvm:
+- 2.7
+
+addons:
+  sauce_connect:
+    username: "erinjensby"
+    access_key: "45b13298-2e2d-4b22-9555-b3c81fd2f223"
+
+script: python src/selenium_tests/guitests.py
